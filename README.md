@@ -1,7 +1,7 @@
 system-utility
 ==============
 
-Utility for DBA and SYSADMIN
+Utilities for DBA and SYSADMIN
 
 postgres-change-owner.py
 ------------------------

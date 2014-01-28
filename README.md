@@ -15,5 +15,5 @@ Postgres Change Owner
 
 This script changes owner of postgres database.
 
-For more info visit [readme file](postgres-utilities/README.md)
+For more info visit [readme file](postgres-utilities/README.md#postgres-change-owner)
 

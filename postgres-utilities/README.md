@@ -1,10 +1,10 @@
-postgres-utilities
+Postgres Utilities
 ==================
 
 Generic utilities for PostgreSQL
 
-postgres-change-owner.py
-------------------------
+Postgres Change Owner
+---------------------
 
 This script changes owner of postgres database. In particular, it changes owner at following db elements:
 

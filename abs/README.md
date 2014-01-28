@@ -62,4 +62,4 @@ smtp_password=
 </pre>
 
 <br />
-You can signal issues and requests on https://github.com/mmilidoni/abs
+You can signal issues and requests on https://github.com/mmilidoni/system-utility/issues/

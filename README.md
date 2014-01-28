@@ -1,4 +1,4 @@
-system-utility
+System Utility
 ==============
 
 Utilities for DBA and SYSADMIN
@@ -10,8 +10,8 @@ Abs is a configurable, automated backup system for websites on FTP hosts.
 
 For more info visit [readme file](abs/README.md)
 
-postgres-change-owner.py
-------------------------
+Postgres Change Owner
+---------------------
 
 This script changes owner of postgres database.
 

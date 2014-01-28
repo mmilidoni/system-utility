@@ -1,21 +1,20 @@
 system-utility
 ==============
 
-Utility for DBA and SYSADMIN
+Utilities for DBA and SYSADMIN
+
+
+Automated Backup System for Websites
+------------------------------------
+
+Abs is a configurable, automated backup system for websites on FTP hosts.
+
+For more info visit [readme file](abs/README.md)
 
 postgres-change-owner.py
 ------------------------
 
-This script changes owner of postgres database. In particular, it changes owner at following db elements:
+This script changes owner of postgres database.
 
-* database
-* schema
-* tables
-* sequences
-* views
-
-Usage: 
-```
-python postgres-change-owner.py db owner
-```
+For more info visit [readme file](postgres-utilities/README.md)
 

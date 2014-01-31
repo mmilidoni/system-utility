@@ -1,7 +1,7 @@
 System Utility
 ==============
 
-Utilities for DBA and SYSADMIN
+DBA and SYSADMIN utility
 
 Automated Backup System for Websites
 ------------------------------------

@@ -1,7 +1,7 @@
 import sys
 
 if sys.version_info < (2, 7):
-    print "Must use python 2.7 or greater"
+    print "Python 2.7 or greater needed"
     exit(1)
 
 from subprocess import check_output, call

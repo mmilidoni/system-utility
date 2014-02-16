@@ -17,3 +17,10 @@ This script changes owner of postgres database.
 
 For more info visit [readme file](postgres-utilities/README.md)
 
+
+vim-config
+----------
+
+Some plugin for Vim
+
+For more info visit [readme file](vim-config/README.md)

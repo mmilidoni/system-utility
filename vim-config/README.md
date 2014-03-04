@@ -11,3 +11,9 @@ Some plugins for Vim:
 * [TagBar](https://github.com/majutsushi/tagbar)
 
 
+Special function keys:
+
+* **<F2\>** paste toggle
+* **<F8\>** SuperTab toggle
+* **<F12\>** check syntax error (PHP files only)
+

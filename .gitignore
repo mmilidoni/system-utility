@@ -1,3 +1,4 @@
 nbproject
 *.pyc
 *.db
+.netrwhist

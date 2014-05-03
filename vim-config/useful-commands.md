@@ -17,16 +17,16 @@ Moving
 * page down: `CTRL-d`
 * page up: `CTRL-u`
 * go to line n: `n + G`
-* go to begin of file: `gg`
-* go to end of file: `G`
+* go to the beginning of file: `gg`
+* go to the end of file: `G`
 
 Editing
 -------
 
 * change word: `cw`
 * change two words: `c2w`
-* change text to the end of line: `c$`
-* add text to the end of line: A
+* change text at the end of line: `c$`
+* add text at the end of line: A
 * add a new line after cursor: `o`
 * add a new line before cursor: `O`
 * copy text: visual mode `v` and select text; enter `y` to copy and `p` to paste it

@@ -19,7 +19,7 @@ Moving
 * go to line n: `n + G`
 * go to the beginning of file: `gg`
 * go to the end of file: `G`
-* navigation between splits: `CTRL-w-{ h | j | k |l }`
+* navigation between splits: `CTRL-w-{ h | j | k | l }`
 
 Editing
 -------

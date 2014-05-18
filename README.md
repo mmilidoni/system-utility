@@ -3,6 +3,11 @@ System Utility
 
 DBA and SYSADMIN utility
 
+General utilities
+-----------------
+
+* `.bashrc_aliases`
+
 Automated Backup System for Websites
 ------------------------------------
 

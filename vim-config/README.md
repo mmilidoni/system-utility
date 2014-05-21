@@ -9,6 +9,7 @@ Some plugins for Vim:
 * [Pyflakes](http://github.com/kevinw/pyflakes-vim)
 * [SuperTab](https://github.com/ervandew/supertab) `apt-get install exuberant-ctags`
 * [TagBar](https://github.com/majutsushi/tagbar)
+* [Less (dynamic css) syntax](https://github.com/groenewege/vim-less)
 
 
 Special function keys:

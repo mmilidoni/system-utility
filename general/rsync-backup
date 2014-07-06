@@ -1,0 +1,11 @@
+#!/bin/sh 
+
+RSYNC=/usr/bin/rsync 
+SSH=/usr/bin/ssh 
+KEY=/home/user/cron/a_key 
+RUSER=remoteuser 
+RHOST=remotehost 
+RPATH=. 
+LPATH=/home/user/localpathtobackup/ 
+
+$RSYNC -avzu -e "$SSH -i $KEY" $LPATH $RUSER@$RHOST:$RPATH  

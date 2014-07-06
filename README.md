@@ -7,6 +7,7 @@ General utilities
 -----------------
 
 * `.bashrc_aliases`
+* `rsync-backup` a sh script to copy local folder to remote host. 
 
 Automated Backup System for Websites
 ------------------------------------

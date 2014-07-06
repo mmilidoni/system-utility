@@ -5,6 +5,7 @@ filetype plugin indent on
 " set mouse=a
 
 let g:tagbar_usearrows = 1
+nmap <F6> :! cordova run android<CR>
 nmap <F8> :TagbarToggle<CR>
 nmap <leader>w :w!<cr>
 set pastetoggle=<F2>
@@ -19,3 +20,7 @@ set shiftwidth=4
 set tabstop=4
 
 colorscheme peachpuff
+
+if filereadable(".vimrc_custom")
+	source .vimrc_custom
+endif

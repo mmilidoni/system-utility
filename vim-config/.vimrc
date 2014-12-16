@@ -4,9 +4,11 @@ filetype plugin indent on
 " set number
 " set mouse=a
 
+let g:syntastic_javascript_checkers = ['jsxhint']
 let g:tagbar_usearrows = 1
 nmap <F6> :! cordova run android<CR>
 nmap <F8> :TagbarToggle<CR>
+nmap <F9> :SyntasticCheck<CR>
 nmap <leader>w :w!<cr>
 set pastetoggle=<F2>
 

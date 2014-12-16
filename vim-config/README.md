@@ -10,11 +10,13 @@ Some plugins for Vim:
 * [SuperTab](https://github.com/ervandew/supertab) `apt-get install exuberant-ctags`
 * [TagBar](https://github.com/majutsushi/tagbar)
 * [Less (dynamic css) syntax](https://github.com/groenewege/vim-less)
+* [Syntastic](https://github.com/scrooloose/syntastic) `npm install -g jsxhint`
 
 
 Special function keys:
 
 * **<F2\>** paste toggle
 * **<F8\>** SuperTab toggle
+* **<F9\>** Syntastic check
 * **<F12\>** check syntax error (PHP files only)
 

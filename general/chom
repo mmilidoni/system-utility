@@ -1,8 +1,6 @@
 #!/usr/bin/python
 
 from os import stat, listdir
-#from pwd import getpwuid
-#import sys
 import subprocess
 
 from pwd import getpwuid
@@ -33,8 +31,8 @@ if user_input is "1" or user_input is "4":
     else:
         print "Bad choose"
 if user_input is "2" or user_input is "4":
-    subprocess.call("find . -type f -exec chmod 644 {}\;", shell=True)
+    subprocess.call("find . -type f -exec chmod 644 {} \;", shell=True)
 if user_input is "3" or user_input is "4":
-    subprocess.call("find . -type d -exec chmod 755 {}\;", shell=True)
+    subprocess.call("find . -type d -exec chmod 755 {} \;", shell=True)
 
 print "Exit"

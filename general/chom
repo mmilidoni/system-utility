@@ -1,33 +1,39 @@
 #!/usr/bin/python
 
-from os import stat
-from pwd import getpwuid
-import sys
+from os import stat, listdir
+#from pwd import getpwuid
+#import sys
 import subprocess
 
-def find_owner(filename):
-    return getpwuid(stat(filename).st_uid).pw_name
+from pwd import getpwuid
 
-if len(sys.argv) < 2:
-    print "Syntax error"
+def get_owner_group(filename):
+    return getpwuid(stat(filename).st_uid).pw_name+":"+getpwuid(stat(filename).st_gid).pw_name
 
-owner = str(stat(sys.argv[1]).st_uid)
-group = str(stat(sys.argv[1]).st_gid)
+print "Please, choose:"
+print "---------------"
+print "1: set files and directories owner"
+print "2: set files permissions to 644"
+print "3: set directories permissions to 755"
+print "4: do all"
 
+user_input = raw_input("> ")
 
-print "Scelta:"
-print "-------"
-print "1: imposta a "+owner+":"+group+" tutti i file e directory"
-print "2: imposta a 644 i permessi dei file"
-print "3: imposta a 755 i permessi delle directory"
-print "4: fai tutto"
-
-user_input = raw_input("Inserisci: ")
-
-if user_input is 1 or user_input is 4:
-    subprocess.call("chown -R "+owner+":"+group+" *", shell=True)
-if user_input is 2 or user_input is 4:
+if user_input is "1" or user_input is "4":
+    perm = []
+    for fd in listdir("."):
+        o = get_owner_group(fd)
+        if o not in perm:
+            perm.append(o)
+    print perm
+    i = int(raw_input("permissions: ")) - 1
+    if i < len(perm):
+        subprocess.call("chown -R "+perm[i]+" *", shell=True)
+    else:
+        print "Bad choose"
+if user_input is "2" or user_input is "4":
     subprocess.call("find . -type f -exec chmod 644 {}\;", shell=True)
-if user_input is 3 or user_input is 4:
+if user_input is "3" or user_input is "4":
     subprocess.call("find . -type d -exec chmod 755 {}\;", shell=True)
 
+print "Exit"

@@ -9,7 +9,7 @@ from pwd import getpwuid
 from grp import getgrgid
 
 def get_owner_group(filename):
-    return getpwuid(stat(filename).st_uid).pw_name+":"+getgrgid(stat(filename).st_gid).pw_name
+    return getpwuid(stat(filename).st_uid).pw_name+":"+getgrgid(stat(filename).st_gid).gr_name
 
 print "Please, choose:"
 print "---------------"

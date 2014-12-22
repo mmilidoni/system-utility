@@ -5,10 +5,10 @@ from os import stat, listdir
 #import sys
 import subprocess
 
-from pwd import getpwuid
+from pwd import getpwuid, getgrgid
 
 def get_owner_group(filename):
-    return getpwuid(stat(filename).st_uid).pw_name+":"+getpwuid(stat(filename).st_gid).pw_name
+    return getpwuid(stat(filename).st_uid).pw_name+":"+getgrgid(stat(filename).st_gid).pw_name
 
 print "Please, choose:"
 print "---------------"

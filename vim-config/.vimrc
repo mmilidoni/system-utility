@@ -9,6 +9,7 @@ let g:tagbar_usearrows = 1
 nmap <F6> :! cordova run android<CR>
 nmap <F8> :TagbarToggle<CR>
 nmap <F9> :SyntasticCheck<CR>
+nmap <F10> %s/à/\&agrave;/g \| :%s/è/\&egrave;/g \| :%s/é/\&eacute;/g \| :%s/ì/\&igrave;/g \| :%s/ò/\&ograve;/g \| :%s/ù/\&ugrave;/g<CR>
 nmap <leader>w :w!<cr>
 set pastetoggle=<F2>
 

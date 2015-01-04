@@ -18,5 +18,6 @@ Special function keys:
 * **<F2\>** paste toggle
 * **<F8\>** SuperTab toggle
 * **<F9\>** Syntastic check
+* **<F10\>** replacing à è é ì ò ù characters with html entities
 * **<F12\>** check syntax error (PHP files only)
 

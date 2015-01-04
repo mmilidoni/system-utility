@@ -8,6 +8,12 @@ General utilities
 
 * `.bashrc_aliases`
 * `rsync-backup` a sh script to copy local folder to remote host. 
+* `chom` this script sets chmod and chown to files and folders.
+
+HTML utilities
+--------------
+
+* `miniml` a minimal css style for simple web pages.
 
 Automated Backup System for Websites
 ------------------------------------

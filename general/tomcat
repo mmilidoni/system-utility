@@ -1,22 +1,17 @@
 #!/bin/bash
-#-------------------
-#|    ZENIT SRL    |
-#| www.zenitlab.it |
-#-------------------
-# Script che consente di avviare tomcat come servizio.
-# Generalmente viene caricato nella directory /etc/init.d/
-# ed inserito nei runlevel
-
 ### BEGIN INIT INFO
-# Provides:      tomcat
-# Required-Start:   $network $remote_fs $syslog
-# Required-Stop:
-# Default-Start:   S
-# Default-Stop:
-# Short-Description:   Activate tomcat.
+# Provides:          tomcat
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Tomcat service
+# Description:       Script che consente di avviare tomcat come servizio
 ### END INIT INFO
 
-export JAVA_HOME=/usr/java/jdk1.6.0_25/ 
+# Author: Michele Milidoni <mmilidoni@zenitlab.it>
+
+export JAVA_HOME=/opt/jdk 
 #set JAVA_OPTS=%JAVA_OPTS% -Duser.language=it -Duser.region=IT
 #set JAVA_OPTS=%JAVA_OPTS% -Duser.language=it -Duser.region=IT
 #export JAVA_OPTS
@@ -31,18 +26,18 @@ fi
 
 case "$1" in
 start)
-cd /opt/tomcat/bin
+cd $TOMCATPATH
 ./startup.sh  -Duser.language=it -Duser.region=IT
 ;;
 stop)
-cd /opt/tomcat/bin
+cd $TOMCATPATH
 ./shutdown.sh
 ;;
 restart)
-cd /opt/tomcat/bin
+cd $TOMCATPATH
 ./shutdown.sh
 sleep 3
-cd /opt/tomcat/bin
+cd $TOMCATPATH
 ./startup.sh -Duser.language=it -Duser.region=IT
 ;;
 *)

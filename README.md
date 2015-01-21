@@ -36,3 +36,12 @@ vim-config
 Some plugin for Vim
 
 For more info visit [readme file](vim-config/README.md)
+
+
+iptables
+--------
+
+Some iptables rules
+
+Visit [readme file](iptables/README.md)
+

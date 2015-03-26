@@ -128,7 +128,7 @@ for f in sites_cfg:
 	    send_mail(config_general, config.get("General", "email_report"), f, "An error occurred dumping database. Please report to sysadmin.\n" + traceback.format_exc(), "Error")
             exit(1)
     
-        zipargs = "zip " + fileoutdb + ".zip "
+        zipargs = "zip -q " + fileoutdb + ".zip "
         if (zipp):
             zipargs += "-P " + zipp + " "
         zipargs += fileoutdb + ".sql"

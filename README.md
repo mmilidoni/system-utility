@@ -7,7 +7,8 @@ General utilities
 -----------------
 
 * `.bashrc_aliases`
-* `rsync-backup` a sh script to copy local folder to remote host. 
+* `rsync-backup` a sh script to copy local folder to remote host.
+* `mysql-backup` a sh script to backup all mysql databases and send to remote host by scp
 * `chom` this script sets chmod and chown to files and folders.
 
 HTML utilities

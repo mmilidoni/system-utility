@@ -22,7 +22,9 @@ set hlsearch
 set shiftwidth=4
 set tabstop=4
 
-colorscheme peachpuff
+set number
+
+colorscheme desert
 
 if filereadable(".vimrc_custom")
 	source .vimrc_custom

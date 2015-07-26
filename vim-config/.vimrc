@@ -23,8 +23,10 @@ set shiftwidth=4
 set tabstop=4
 
 set number
+tab ball
 
-colorscheme desert
+set t_Co=256
+colorscheme CandyPaper
 
 if filereadable(".vimrc_custom")
 	source .vimrc_custom

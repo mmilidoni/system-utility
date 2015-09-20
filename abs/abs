@@ -4,8 +4,7 @@
 # This script uses configuration files to get backup informations. Configuration files must be
 # located in config/ folder and named as websitedomain.com.cfg 
 
-from os import path, stat, listdir, environ
-from os.path import isfile, join
+from os import path, stat, environ
 from subprocess import check_call
 import ConfigParser
 import ftplib
@@ -17,74 +16,73 @@ import traceback
 import getopt
 
 if sys.version_info < (2, 7):
-    print "Error: must use python 2.7 or greater"
-    exit(1)
+	print "Error: must use python 2.7 or greater"
+	exit(1)
 
 opts, args = getopt.getopt(sys.argv[1:], "i")
 args.insert(0, sys.argv[0])
 
 def upload(filename, extension, folder, n_max_files, session):
-        if not filename:
-            return
-
-        try:
-            session.cwd(folder)
-        except ftplib.error_perm as detail:
-            session.mkd(folder)
-            session.cwd(folder)
-
+	if not filename:
+		return
+	try:
+		session.cwd(folder)
+	except ftplib.error_perm as detail:
+		session.mkd(folder)
+		session.cwd(folder)
 	filesize = stat(filename + extension).st_size
 	progress = progressbar.AnimatedProgressBar(end=filesize, width=50)
 
 	def callback(chunk):
-            progress + len(chunk)
-	    for opt, arg in opts:
-	        if "-i" in opt:
-                    progress.show_progress()
+		progress + len(chunk)
+		for opt, arg in opts:
+			if "-i" in opt:
+				progress.show_progress()
 
-        file = open(filename + extension, 'rb')
-        session.storbinary('STOR ' + filename + "_" + time.strftime("%Y-%m-%d_%H-%M") + extension, file, 1024, callback)
+	file = open(filename + extension, 'rb')
+	session.storbinary('STOR ' + filename + "_" + time.strftime("%Y-%m-%d_%H-%M") + extension, file, 1024, callback)
 
-        file.close()
+	file.close()
 	print
 
-        file_list = session.nlst()
-        if len(file_list) > int(n_max_files):
-            dtemp = -1;
-            for f in file_list:
-                modified_time = session.sendcmd('MDTM ' + f)
-                if dtemp == -1:
-                    dtemp = modified_time
-                    file_to_delete = f
-                if dtemp > modified_time:
-                    dtemp = modified_time
-                    file_to_delete = f;
-            session.delete(file_to_delete)
+	file_list = session.nlst()
+	if len(file_list) > int(n_max_files):
+		dtemp = -1;
+		for f in file_list:
+			modified_time = session.sendcmd('MDTM ' + f)
+			if dtemp == -1:
+				dtemp = modified_time
+				file_to_delete = f
+			if dtemp > modified_time:
+				dtemp = modified_time
+				file_to_delete = f;
+		session.delete(file_to_delete)
 
-        session.cwd("..")
+	session.cwd("..")
 
 def send_mail(cfg, to, filename, text, error):
-    sender = cfg.get("SMTP", "smtp_email")
-    receivers = [to]
+	sender = cfg.get("SMTP", "smtp_email")
+	receivers = [to]
 
-    message = "From: " + cfg.get("SMTP", "smtp_name") + " <" + sender + ">\nTo: <" + to + ">" 
-    message = message + "\nSubject: ["+ filename + " " + args[1] + "] Backup Report " + error +"\n\n" + text
+	message = "From: " + cfg.get("SMTP", "smtp_name") + " <" + sender + ">\nTo: <" + to + ">" 
+	message = message + "\nSubject: ["+ filename + " " + args[1] + "] Backup Report " + error +"\n\n" + text
 
-    try:
-        smtpObj = smtplib.SMTP(cfg.get("SMTP", "smtp_server"))
-        smtpObj.login(cfg.get("SMTP", "smtp_email"), cfg.get("SMTP", "smtp_password"))
-        smtpObj.sendmail(sender, receivers, message)         
-        print "Successfully sent email"
-    except:
-        print "Error: unable to send email\n" + traceback.format_exc()
+	try:
+		smtpObj = smtplib.SMTP(cfg.get("SMTP", "smtp_server"))
+		smtpObj.login(cfg.get("SMTP", "smtp_email"), cfg.get("SMTP", "smtp_password"))
+		smtpObj.sendmail(sender, receivers, message)
+		print "Successfully sent email"
+	except:
+		print "Error: unable to send email\n" + traceback.format_exc()
 
 
 mypath = path.dirname(__file__) + "/config/"
 
 if len(args) != 3 or (args[1] != "database" and args[1] != "website" and args[1] != "all"):
-    print "Syntax error"
-    print args[0] + " database|website|all domain.cfg"
-    exit(1)
+	print "Syntax error"
+	print args[0] + " database|website|all domain.cfg"
+	print args[0] + " jconfig path"
+	exit(1)
 
 config_general = ConfigParser.ConfigParser()
 config_general.readfp(open(mypath + "general.cfg"))
@@ -92,97 +90,102 @@ config_general.readfp(open(mypath + "general.cfg"))
 sites_cfg = args[2:len(args)]
 config = ConfigParser.SafeConfigParser({'db_type': 'mysql'})
 
-for f in sites_cfg:
-    f = f.replace("'", "")
-    config.readfp(open(mypath + f))
-    domain = config.get("General", "domain")
-    site_location = config.get("General", "site_location")
-    n_max_files_db = config.get("General", "n_max_files_db")
-    n_max_files_site = config.get("General", "n_max_files_site")
-    dbtype = config.get("General", "db_type")
-    dbname = config.get("General", "db_name")
-    dbusername = config.get("General", "db_username")
-    dbpassword = config.get("General", "db_password")
-    zipp = config.get("General", "zip_password")
-    fileoutdb = "db-" + domain
-    fileoutsite = "site-" + domain
-    #backup del database
-    if args[1] == 'database' or args[1] == 'all':
-        try:
-	    if dbtype == 'mysql':
-	            check_call("mysqldump " + dbname + " -u " + dbusername +
-        	    " --password=" + dbpassword + " > " + fileoutdb + ".sql", shell=True)
-	    elif dbtype == 'postgresql':
-		    if dbpassword:
-			environ["PGPASSWORD"] = dbpassword
-		    check_call("pg_dump -h localhost -U " + dbusername + " " + dbname +
-                    "  > " + fileoutdb + ".sql", shell=True)
-		    environ["PGPASSWORD"] = ""
-	    else:
-		    print "Database type wrong"
-		    send_mail(config_general, config.get("General", "email_report"), f, "Database type wrong. Please report to sysadmin.\n", "Error")
-            	    exit(1)
+if args[1] == "jconfig":
+	#TODO
+	print
 
-	except:
-	    print traceback.format_exc()
-	    send_mail(config_general, config.get("General", "email_report"), f, "An error occurred dumping database. Please report to sysadmin.\n" + traceback.format_exc(), "Error")
-            exit(1)
-    
-        zipargs = "zip -q " + fileoutdb + ".zip "
-        if (zipp):
-            zipargs += "-P " + zipp + " "
-        zipargs += fileoutdb + ".sql"
-    
-        try:
-            check_call(zipargs, shell=True)
-            file_upload_db = fileoutdb
-        except:
-            print "[" + f + "] An error occurred zipping dump database. Please report to sysadmin."
-	    send_mail(config_general, config.get("General", "email_report"), f, "An error occurred zipping dump database. Please report to sysadmin.\n" + traceback.format_exc(), "Error")
-            exit(1)
+else:
+	for f in sites_cfg:
+		f = f.replace("'", "")
+		config.readfp(open(mypath + f))
+		domain = config.get("General", "domain")
+		site_location = config.get("General", "site_location")
+		n_max_files_db = config.get("General", "n_max_files_db")
+		n_max_files_site = config.get("General", "n_max_files_site")
+		dbtype = config.get("General", "db_type")
+		dbname = config.get("General", "db_name")
+	 	dbusername = config.get("General", "db_username")
+		dbpassword = config.get("General", "db_password")
+	 	zipp = config.get("General", "zip_password")
+		fileoutdb = "db-" + domain
+		fileoutsite = "site-" + domain
+		#backup del database
+	 	if args[1] == 'database' or args[1] == 'all':
+		 	try:
+				if dbtype == 'mysql':
+			 		check_call("mysqldump " + dbname + " -u " + dbusername +
+		 		" --password=" + dbpassword + " > " + fileoutdb + ".sql", shell=True)
+				elif dbtype == 'postgresql':
+				 	if dbpassword:
+						environ["PGPASSWORD"] = dbpassword
+			 			check_call("pg_dump -h localhost -U " + dbusername + " " + dbname +
+				 			" > " + fileoutdb + ".sql", shell=True)
+					 	environ["PGPASSWORD"] = ""
+				else:
+					print "Database type wrong"
+					send_mail(config_general, config.get("General", "email_report"), f, "Database type wrong. Please report to sysadmin.\n", "Error")
+		 			exit(1)
 
-    #backup del sito
-    if args[1] == 'website' or args[1] == 'all':
-        try:
-            check_call("zip --recurse-paths " + fileoutsite + ".zip " + site_location, shell=True)
-            file_upload_site = fileoutsite
-        except:
-            print "[" + f + "] An error occurred zipping website. Please report to sysadmin."
-	    send_mail(config_general, config.get("General", "email_report"), f, "An error occurred zipping website. Please report to sysadmin.\n" + traceback.format_exc(), "Error")
-            exit(1)
-    
-    if config.get("FTP", "ftp_server"):
-        ftp_server = config.get("FTP", "ftp_server")
-        ftp_user = config.get("FTP", "ftp_user")
-        ftp_password=config.get("FTP", "ftp_password")
-    else:
-        ftp_server = config_general.get("FTP", "ftp_server")
-        ftp_user = config_general.get("FTP", "ftp_user")
-        ftp_password = config_general.get("FTP", "ftp_password")
+			except:
+				print traceback.format_exc()
+				send_mail(config_general, config.get("General", "email_report"), f, "An error occurred dumping database. Please report to sysadmin.\n" + traceback.format_exc(), "Error")
+			 	exit(1)
 
-    session = ftplib.FTP_TLS(ftp_server, ftp_user, ftp_password)
-    session.set_pasv(True)
-    try:
-        session.cwd(domain)
-    except ftplib.error_perm as detail:
-        session.mkd(domain)
-        session.cwd(domain)
-    try:
-	upload(file_upload_db, '.zip', 'database', n_max_files_db, session);
-    except NameError:
-        print "No database to upload."
-    except:
-	send_mail(config_general, config.get("General", "email_report"), f, "An error occurred. Please report to sysadmin.\n" + traceback.format_exc(), "Error")
+			zipargs = "zip -q " + fileoutdb + ".zip "
+ 			if (zipp):
+				zipargs += "-P " + zipp + " "
+			zipargs += fileoutdb + ".sql"
 
-    try:
-        upload(file_upload_site, '.zip', 'website', n_max_files_site, session);
-    except NameError:
-        print "No website to upload."
-    except:
-	send_mail(config_general, config.get("General", "email_report"), f, "An error occurred. Please report to sysadmin.\n" + traceback.format_exc(), "Error")
-    session.quit()
+			try:
+				check_call(zipargs, shell=True)
+			 	file_upload_db = fileoutdb
+			except:
+				print "[" + f + "] An error occurred zipping dump database. Please report to sysadmin."
+				send_mail(config_general, config.get("General", "email_report"), f, "An error occurred zipping dump database. Please report to sysadmin.\n" + traceback.format_exc(), "Error")
+				exit(1)
 
-    if config.get("General", "success_send_email") == 1:
-	print "Backup complete."
-        send_mail(config_general, config.get("General", "email_report"), f, "Backup complete.", "")
+		#backup del sito
+		if args[1] == 'website' or args[1] == 'all':
+			try:
+				check_call("zip --recurse-paths " + fileoutsite + ".zip " + site_location, shell=True)
+				file_upload_site = fileoutsite
+			except:
+				print "[" + f + "] An error occurred zipping website. Please report to sysadmin."
+				send_mail(config_general, config.get("General", "email_report"), f, "An error occurred zipping website. Please report to sysadmin.\n" + traceback.format_exc(), "Error")
+				exit(1)
+
+		if config.get("FTP", "ftp_server"):
+			ftp_server = config.get("FTP", "ftp_server")
+			ftp_user = config.get("FTP", "ftp_user")
+			ftp_password=config.get("FTP", "ftp_password")
+		else:
+			ftp_server = config_general.get("FTP", "ftp_server")
+			ftp_user = config_general.get("FTP", "ftp_user")
+			ftp_password = config_general.get("FTP", "ftp_password")
+
+		session = ftplib.FTP_TLS(ftp_server, ftp_user, ftp_password)
+		session.set_pasv(True)
+		try:
+			session.cwd(domain)
+		except ftplib.error_perm as detail:
+			session.mkd(domain)
+			session.cwd(domain)
+		try:
+			upload(file_upload_db, '.zip', 'database', n_max_files_db, session);
+		except NameError:
+			print "No database to upload."
+		except:
+			send_mail(config_general, config.get("General", "email_report"), f, "An error occurred. Please report to sysadmin.\n" + traceback.format_exc(), "Error")
+
+		try:
+			upload(file_upload_site, '.zip', 'website', n_max_files_site, session);
+		except NameError:
+			print "No website to upload."
+		except:
+			send_mail(config_general, config.get("General", "email_report"), f, "An error occurred. Please report to sysadmin.\n" + traceback.format_exc(), "Error")
+		session.quit()
+
+		if config.get("General", "success_send_email") == "1":
+			print "Backup complete."
+			send_mail(config_general, config.get("General", "email_report"), f, "Backup complete.", "")
 

@@ -6,7 +6,7 @@ filetype plugin indent on
 
 let g:syntastic_javascript_checkers = ['jsxhint']
 let g:tagbar_usearrows = 1
-nmap <F6> :! cordova run android<CR>
+nmap <F6> :! phonegap run android<CR>
 nmap <F8> :TagbarToggle<CR>
 nmap <F9> :SyntasticCheck<CR>
 nmap <F10> :%s/à/\&agrave;/e \| :%s/è/\&egrave;/e \| :%s/é/\&eacute;/e \| :%s/ì/\&igrave;/e \| :%s/ò/\&ograve;/e \| :%s/ù/\&ugrave;/e<CR>
@@ -22,7 +22,7 @@ set hlsearch
 set shiftwidth=4
 set tabstop=4
 
-set number
+" set number
 tab ball
 
 set t_Co=256

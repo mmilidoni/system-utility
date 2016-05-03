@@ -9,6 +9,7 @@ Some plugins for Vim:
 * [Pyflakes](http://github.com/kevinw/pyflakes-vim)
 * [SuperTab](https://github.com/ervandew/supertab) `apt-get install exuberant-ctags`
 * [TagBar](https://github.com/majutsushi/tagbar)
+* [TaskList](https://github.com/vim-scripts/TaskList.vim)
 * [Less (dynamic css) syntax](https://github.com/groenewege/vim-less)
 * [Syntastic](https://github.com/scrooloose/syntastic) `npm install -g jsxhint`
 
@@ -19,5 +20,6 @@ Special function keys:
 * **<F8\>** SuperTab toggle
 * **<F9\>** Syntastic check
 * **<F10\>** replacing à è é ì ò ù characters with html entities
+* **<F11\>** TaskList
 * **<F12\>** check syntax error (PHP files only)
 

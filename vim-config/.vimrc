@@ -10,6 +10,7 @@ nmap <F6> :! phonegap run android<CR>
 nmap <F8> :TagbarToggle<CR>
 nmap <F9> :SyntasticCheck<CR>
 nmap <F10> :%s/à/\&agrave;/e \| :%s/è/\&egrave;/e \| :%s/é/\&eacute;/e \| :%s/ì/\&igrave;/e \| :%s/ò/\&ograve;/e \| :%s/ù/\&ugrave;/e<CR>
+nmap <F11> :TaskList<CR>
 nmap <leader>w :w!<cr>
 set pastetoggle=<F2>
 

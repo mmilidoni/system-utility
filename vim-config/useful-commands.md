@@ -41,6 +41,13 @@ Deleting
 * delete text to the end line: `d$`
 * delete entire line: `dd`
 
+TAB
+---
+
+* open new file: `:tabedit {file}`
+* move between tabs: `gt` `gT`
+
+
 Searching and replacing
 -----------------------
 

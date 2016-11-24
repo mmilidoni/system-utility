@@ -41,7 +41,7 @@ Deleting
 * delete text to the end line: `d$`
 * delete entire line: `dd`
 
-TAB
+Tab
 ---
 
 * open new file: `:tabedit {file}`

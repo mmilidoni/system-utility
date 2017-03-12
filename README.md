@@ -7,14 +7,15 @@ General utilities
 -----------------
 
 * `.bashrc_aliases`
-* `rsync-backup` a sh script to copy local folder to remote host.
-* `mysql-backup` a sh script to backup all mysql databases and send to remote host by scp
+* `rsync-backup` a sh script for copying a local folder to a remote host.
+* `mysql-backup` a sh script to backup all mysql databases and send them to remote host by scp
 * `chom` this script sets chmod and chown to files and folders.
 
 HTML utilities
 --------------
 
 * `miniml` a minimal css style for simple web pages.
+* `bootstrap-demo` a bootstrap demo.
 
 Automated Backup System for Websites
 ------------------------------------

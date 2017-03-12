@@ -118,9 +118,9 @@ else:
 				elif dbtype == 'postgresql':
 				 	if dbpassword:
 						environ["PGPASSWORD"] = dbpassword
-			 			check_call("pg_dump -h localhost -U " + dbusername + " " + dbname +
+			 		check_call("pg_dump -h localhost -U " + dbusername + " " + dbname +
 				 			" > " + fileoutdb + ".sql", shell=True)
-					 	environ["PGPASSWORD"] = ""
+					environ["PGPASSWORD"] = ""
 				else:
 					print "Database type wrong"
 					send_mail(config_general, config.get("General", "email_report"), f, "Database type wrong. Please report to sysadmin.\n", "Error")
@@ -154,14 +154,16 @@ else:
 				send_mail(config_general, config.get("General", "email_report"), f, "An error occurred zipping website. Please report to sysadmin.\n" + traceback.format_exc(), "Error")
 				exit(1)
 
-		if config.get("FTP", "ftp_server"):
-			ftp_server = config.get("FTP", "ftp_server")
-			ftp_user = config.get("FTP", "ftp_user")
-			ftp_password=config.get("FTP", "ftp_password")
-		else:
-			ftp_server = config_general.get("FTP", "ftp_server")
-			ftp_user = config_general.get("FTP", "ftp_user")
-			ftp_password = config_general.get("FTP", "ftp_password")
+		ftp_server = config_general.get("FTP", "ftp_server")
+		ftp_user = config_general.get("FTP", "ftp_user")
+		ftp_password = config_general.get("FTP", "ftp_password")
+		try:
+			if config.get("FTP", "ftp_server"):
+				ftp_server = config.get("FTP", "ftp_server")
+				ftp_user = config.get("FTP", "ftp_user")
+				ftp_password=config.get("FTP", "ftp_password")
+		except ConfigParser.NoSectionError:
+			print "Uso le configurazioni FTP generiche"
 
 		session = ftplib.FTP_TLS(ftp_server, ftp_user, ftp_password)
 		session.set_pasv(True)

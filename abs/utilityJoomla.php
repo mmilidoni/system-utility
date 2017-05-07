@@ -26,7 +26,12 @@ $arr = array("General" => array(
         "db_username" => $jc->user,
         "db_password" => $jc->password,
         "db_name" => $jc->db
-    )
+	),
+	"FTP" => array(
+		"ftp_server" => "",
+		"ftp_user" => "",
+		"ftp_password" => ""
+	)
 );
 
 writePhpIni($arr, $filename);

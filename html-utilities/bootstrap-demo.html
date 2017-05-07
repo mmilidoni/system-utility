@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+    <style>
+        body {
+            padding-top: 70px;
+        }
+        .row {
+            margin-top: 10px;
+        }
+        .footer {
+            height: 300px;
+            background-color: #BDBDBD;
+        }
+        .alert {
+            display: none;
+        }
+        .navbar {
+            background-color: #2B2B2B;
+        }
+        .toolx {
+            background-color: red;
+            border: 1px solid black;
+        }
+        .wTwo {
+            width: 200px;
+            border: 1px solid black;
+        }
+        td {}
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark  navbar-full navbar-fixed-top ">
+        <button class="navbar-toggler hidden-md-up float-xs-right" type="button" data-toggle="collapse" data-target="#myNav"></button> <a class="navbar-brand hidden-sm-down" href="#">Logo</a>
+        <div id="myNav" class="collapse navbar-toggleable-sm float-md-right">
+            <ul class="nav navbar-nav  ">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a> </li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a> </li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a> </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container  ">
+        <div class="row" id="home">
+            <div class="col-xs-12"> <span class="text-uppercase display-2">Company Name</span> <small class="text-muted">  Text bit smaller</small> </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div id="carouselHld" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselHld" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselHld" data-slide-to="1"></li>
+                        <li data-target="#carouselHld" data-slide-to="2"></li>
+                        <li data-target="#carouselHld" data-slide-to="3"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active"> <img src="http://placehold.it/1550x350?text=one" class="img-fluid" alt="tempimage"> </div>
+                        <div class="carousel-item "> <img src="http://placehold.it/1550x350?text=two" class="img-fluid" alt="tempimage"> </div>
+                        <div class="carousel-item "> <img src="http://placehold.it/1550x350?text=three" class="img-fluid" alt="tempimage"> </div>
+                        <div class="carousel-item "> <img src="http://placehold.it/1550x350?text=four" class="img-fluid" alt="tempimage"> </div>
+                    </div> <a href="#carouselHld" class="right carousel-control" data-slide="next"><span class="icon-next"></span></a> <a href="#carouselHld" class="left carousel-control" data-slide="prev"><span class="icon-prev"></span></a> </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div id="myAcc">
+                    <div class="card">
+                        <div class="card-header"> <a data-toggle="collapse" data-parent="#myAcc" href="#c1" class="btn btn-primary btn-block  ">Whats News Today</a> </div>
+                        <div id="c1" class="collapse in">
+                            <div class="card-block">
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. <span class="text-success" data-toggle="tooltip" data-placement="top" title="This is a tooltip">Aenean massa</span>. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. <span class="align-text-bottom">Donec quam felis</span>, ultricies nec, pellentesque eu, pretium quis, sem.</p>
+                                <p class="text-white bg-inverse"> rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras </p>
+                                <p class="text-white bg-primary text-xs-right  "> rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras </p>
+                                <p class="text-white bg-info  text-xs-center"> rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras </p>
+                                <p class="text-white bg-success wTwo mx-auto  "> rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras </p>
+                                <p class="text-white bg-danger  text-xs-left text-uppercase"> rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras </p>
+                                <p class="text-white bg-warning font-weight-bold   "> rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras </p>
+                                <p class="bg-faded font-italic "> rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras </p>
+                                <p>Nulla consequat <span class="d-block">massa quis enim</span>. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
+                                    <div class="d-inline-block text-danger">Nullam dictum
+                                        <br> something </div>
+                                    <div class="d-inline text-danger">Nullam dictum </div>felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"> <a data-toggle="collapse" data-parent="#myAcc" href="#c2" class="btn btn-success btn-block  ">Yesterday's News</a> </div>
+                        <div id="c2" class="collapse">
+                            <div class="card-block">
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                                <p>Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"> <a data-toggle="collapse" data-parent="#myAcc" href="#c3" class="btn btn-danger btn-block  ">Last Week</a> </div>
+                        <div id="c3" class="collapse">
+                            <div class="card-block">
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.</p>
+                                <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="about">
+            <div class="col-md-9 conBorder">
+                <p class="h2">Heading 2</p>
+                <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
+                <ul class="list-group">
+                    <li class="list-group-item active">One</li>
+                    <li class="list-group-item">Two</li>
+                    <li class="list-group-item disabled">Three</li>
+                    <li class="list-group-item list-group-item-danger">Four</li>
+                </ul>
+            </div>
+            <div class="col-md-3 conBorder">
+                <div class="media">
+                    <a href="#" class="media-left"> <img class="media-object" src="http://placehold.it/50x50" alt="tempimage"> </a>
+                    <div class="media-body">
+                        <div class="media-heading">Heading</div> Content and more </div>
+                </div>
+                <div class="media">
+                    <a href="#" class="media-left"> <img class="media-object" src="http://placehold.it/50x50" alt="tempimage"> </a>
+                    <div class="media-body">
+                        <div class="media-heading">Heading</div> Content and more </div>
+                </div>
+                <div class="media">
+                    <a href="#" class="media-left"> <img class="media-object" src="http://placehold.it/50x50" alt="tempimage"> </a>
+                    <div class="media-body">
+                        <div class="media-heading">Heading</div> Content and more </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" col-sm-12">
+                <div class="jumbotron">
+                    <h1>Welcome to my Website</h1>
+                    <p>Blah blah blah this site is built with Bootstrap 4</p>
+                    <hr>
+                    <p>Check out our site for more <a href="#" id="makeAlert" class="btn btn-info">Find out more</a> </p>
+                </div>
+                <div class="alert alert-warning alert-dismissible fade in">
+                    <button type="button" class="close" data-dismiss="alert">x</button> Alert Message </div>
+                <div>
+                    <ul id="myContent" class="nav nav-tabs" role="tablist">
+                        <li class="nav-item"><a href="#one" data-toggle="tab" class="nav-link active" role="tab">One</a> </li>
+                        <li class="nav-item"><a href="#two" data-toggle="tab" class="nav-link" role="tab">Two</a> </li>
+                        <li class="nav-item"><a href="#three" data-toggle="tab" class="nav-link" role="tab">Three</a> </li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div id="one" class="tab-pane active" role="tabpanel">
+                        <h1>ONE</h1>
+                        <p>Lorem ipsum <span class="text-danger">dolor</span> sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, <span class="bg-danger text-white">dolor</span> pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
+                        <p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
+                        <p>Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>
+                    </div>
+                    <div id="two" class="tab-pane" role="tabpanel">
+                        <h1>Two</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                        <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
+                        <p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,</p>
+                    </div>
+                    <div id="three" class="tab-pane" role="tabpanel">
+                        <h1>Three</h1>
+                        <p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p> <img src="http://placehold.it/350x150" alt="tempimage"> </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="card-title">New Item</div>
+                    </div> <img class="card-img-top  img-fluid img-thumbnail" src="http://placehold.it/500x500" alt="tempimage">
+                    <div class="card-block">
+                        <p class="card-text">Item information and description of the item</p>
+                        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal1">Click Me</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="card-title">New Item 2</div>
+                    </div> <img class="card-img-top  img-fluid rounded-circle" alt="tempimage" src="http://placehold.it/500x500">
+                    <div class="card-block">
+                        <p class="card-text">Item 2 information and description of the item</p>
+                        <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modal2">Click Me</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="card-title">New Item</div>
+                    </div> <img class="card-img-top  img-fluid rounded" src="http://placehold.it/500x500" alt="tempimage">
+                    <div class="card-block">
+                        <p class="card-text">Item information and description of the item</p>
+                        <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#modal3">Click Me</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-hover table-bordered">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th><span class="btn btn-warning" data-container="body" data-toggle="popover" data-placement="top" data-content="Please enter a name you use">First Name</span> </th>
+                            <th><span class="btn btn-warning" data-container="body" data-toggle="popover" data-placement="bottom" data-content="What is your Last Name!">Last Name</span> </th>
+                            <th><span class="btn btn-warning" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Please enter your REAL age!">Age</span> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-danger">
+                            <td>Laurence</td>
+                            <td>Svekis</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td class="align-text-top">Mike</td>
+                            <td class="align-bottom">Smith</td>
+                            <td>20</td>
+                        </tr>
+                        <tr>
+                            <td>John</td>
+                            <td>Jackson</td>
+                            <td>30</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
+                <p>Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,</p>
+            </div>
+        </div>
+        <div class="row" id="contact">
+            <div class="col-sm-12">
+                <div class="h2">Contact Us</div>
+                <div class="bg-primary clearfix">
+                    <div class="btn btn-info float-xs-right">Right</div>
+                    <div class="btn btn-info float-xs-left">Left</div>
+                </div>
+                <form>
+                    <div class="row form-group has-success">
+                        <label class="col-sm-2" for="fullname">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="fullname" class="form-control form-control-success"> </div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-sm-2" for="email">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" id="email" class="form-control"> </div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-sm-2" for="radio">Pick a Color</label>
+                        <div class="col-sm-10">
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="radio" id="radio1" value="Blue">Blue</label>
+                                <label class="btn btn-danger">
+                                    <input type="radio" name="radio" id="radio2" value="Red">Red</label>
+                                <label class="btn btn-success">
+                                    <input type="radio" name="radio" id="radio3" value="Green">Green</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-10 offset-sm-2">
+                            <button type="button" class="btn btn-primary">Send Message</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row footer">
+        <div class="col-sm-12"> Footer Information (c) </div>
+    </div>
+    <!-- Modals -->
+    <div class="modal" id="modal1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">X </button>
+                    <h3 class="modal-title">Product Info</h3> </div>
+                <div class="modal-body">
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p> <img src="http://placehold.it/350x150" class="img-fluid" alt="tempimage">
+                    <p>Aenean commodo ligula eget dolor. Aenean m</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal2" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">X </button>
+                    <h3 class="modal-title">Second Product</h3> </div>
+                <div class="modal-body">
+                    <p>Blah BLah blah Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p> <img src="http://placehold.it/350x150" class="img-fluid" alt="tempimage"> </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal3" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">X </button>
+                    <h3 class="modal-title">Third Product</h3> </div>
+                <div class="modal-body">
+                    <p>This is great :)</p> <img src="http://placehold.it/350x450" class="img-fluid" alt="tempimage"> </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $('#makeAlert').click(function() {
+                event.preventDefault();
+                $('.alert').toggle();
+            });
+            $('a.navbar-brand, a.nav-link').click(function() {
+                var $secId = $(this);
+                $('html, body').stop().animate({
+                    scrollTop: ($($secId.attr('href')).offset().top - 70)
+                }, 1000);
+            });
+            $('body').scrollspy({
+                target: ".navbar-fixed-top",
+                offset: 71
+            })
+            $('[data-toggle="popover"]').popover();
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+</body>
+
+</html>
+

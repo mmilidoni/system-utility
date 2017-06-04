@@ -1,0 +1,15 @@
+#!/bin/sh
+
+RSYNC=/usr/bin/rsync
+SSH=/usr/bin/ssh
+KEY=/home/user/cron/a_key 
+RUSER=remoteuser 
+RHOST=remotehost 
+RPATH=. 
+LPATH=/home/user/localpathtobackup/ 
+
+DIRTEMP=`date +%Y-%m-%d_%H-%M-%S`
+DIRTEMP="backup_$DIRTEMP"
+mkdir $DIRTEMP
+tar -czO $LPATH | split -b 2048MiB - $DIRTEMP/file.tgz_
+$RSYNC -avzu -e "$SSH -i $KEY" "$DIRTEMP" "$RUSER@$RHOST:$RPATH"

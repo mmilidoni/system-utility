@@ -28,6 +28,7 @@ if user_input is "1" or user_input is "4":
     i = int(raw_input("permissions: ")) - 1
     if i < len(perm):
         subprocess.call("chown -R "+perm[i]+" *", shell=True)
+        subprocess.call("chown "+perm[i]+" .[a-z]*", shell=True)
     else:
         print "Bad choose"
 if user_input is "2" or user_input is "4":

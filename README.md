@@ -10,6 +10,7 @@ General utilities
 * `rsync-backup` a sh script for copying a local folder to a remote host.
 * `mysql-backup` a sh script to backup all mysql databases and send them to remote host by scp
 * `chom` this script sets chmod and chown to files and folders.
+* `ossl` a command line script that encrypts and decrypts files using openssl.
 
 HTML utilities
 --------------

@@ -1,0 +1,39 @@
+#!/usr/bin/python
+
+import sys, getopt
+from subprocess import call
+
+def main(argv):
+    stx = sys.argv[0] + ' -k <keyfile> [-e <infile> | -d <infile> | -p]'
+    infile = ''
+    keyfile = ''
+    oper = ''
+    try:
+        opts, args = getopt.getopt(argv,"k:e:d:ph")
+    except getopt.GetoptError:
+        print stx
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == '-h':
+            print stx
+            sys.exit()
+        elif opt == '-k':
+            keyfile = arg
+            oper = 'k'
+        elif opt == '-d':
+            infile = arg
+            oper = 'd'
+        elif opt == '-e':
+            infile = arg
+            oper = 'e'
+
+    if oper == 'k':
+        call("openssl rsa -in " + keyfile + " -pubout > " + keyfile + ".pub.pem", shell=True)
+    if oper == 'e':
+        call("cat " + infile + " | openssl rsautl -encrypt -pubin -inkey " + keyfile, shell=True)
+    if oper == 'd':
+        call("cat " + infile + " | openssl rsautl -decrypt -inkey " + keyfile, shell=True)
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

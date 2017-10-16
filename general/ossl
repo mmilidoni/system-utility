@@ -2,12 +2,14 @@
 
 import sys, getopt
 from subprocess import call
+import os
 
 def main(argv):
-    stx = sys.argv[0] + ' -k <keyfile> [-e <infile> | -d <infile> | -p]'
+    stx = sys.argv[0] + ' -k <keyfile> [-e <infile> | -d <zipfile> | -p]'
     infile = ''
     keyfile = ''
     oper = ''
+    tmpDir = "temp/"
     try:
         opts, args = getopt.getopt(argv,"k:e:d:ph")
     except getopt.GetoptError:
@@ -27,13 +29,48 @@ def main(argv):
             infile = arg
             oper = 'e'
 
-    if oper == 'k':
+    if oper == 'p':
         call("openssl rsa -in " + keyfile + " -pubout > " + keyfile + ".pub.pem", shell=True)
     if oper == 'e':
-        call("cat " + infile + " | openssl rsautl -encrypt -pubin -inkey " + keyfile, shell=True)
-    if oper == 'd':
-        call("cat " + infile + " | openssl rsautl -decrypt -inkey " + keyfile, shell=True)
+        os.mkdir(tmpDir)
+        call("openssl rand -base64 128 -out " + "key.bin", shell=True)
+        if os.path.isdir(infile):
+            for dirname, dirnames, filenames in os.walk(infile):
+                for filename in filenames:
+                    f = os.path.join(dirname, filename)
+                    if not os.path.isdir(tmpDir + dirname):
+                        os.mkdir(tmpDir + dirname)
+                    call("openssl enc -aes-256-cbc -salt -in " + f + " -out " + tmpDir + f + ".enc -pass file:" + "key.bin", shell=True)
+        else:
+            call("openssl enc -aes-256-cbc -salt -in " + infile + " -out " + tmpDir + infile + ".enc -pass file:" + "key.bin", shell=True)
 
+
+        call("openssl rsautl -encrypt -inkey " + keyfile + " -pubin -in " + "key.bin -out " + tmpDir + "key.bin.enc", shell=True)
+        os.chdir(tmpDir)
+        call("zip -r ../enc.zip " + "*", shell=True)
+        os.chdir("..")
+        call("rm -rf key.bin*", shell=True)
+        if raw_input("Delete " + tmpDir + " ? (y/N): ") == 'y':
+            call("rm -rf " + tmpDir, shell=True)
+    if oper == 'd':
+        call("unzip " + infile + " -d " + tmpDir, shell=True)
+        call("openssl rsautl -decrypt -inkey " + keyfile + " -in " + tmpDir + "key.bin.enc -out " + tmpDir + "key.bin", shell=True)
+
+        for dirname, dirnames, filenames in os.walk(tmpDir):
+            for filename in filenames:
+                f = os.path.join(dirname, filename)
+                destdir = dirname[len(tmpDir):] + "/"
+                if destdir == '/':
+                    destdir = "./"
+                if not os.path.isdir(destdir):
+                    os.mkdir(destdir)
+                if f[-3:] == "enc" and filename != "key.bin.enc":
+                    outfile = destdir + filename[:-4]
+                    if raw_input("Extract " + f + " ? (Y/n): ") != 'n':
+                        call("openssl enc -d -aes-256-cbc -in " + f + " -out " + outfile + " -pass file:./" + tmpDir + "key.bin", shell=True)
+
+        if raw_input("Delete " + tmpDir + " ? (y/N): ") == 'y':
+            call("rm -rf " + tmpDir, shell=True)
 
 if __name__ == "__main__":
     main(sys.argv[1:])
